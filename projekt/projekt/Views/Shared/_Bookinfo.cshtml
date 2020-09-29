@@ -1,0 +1,35 @@
+﻿@model projekt.Models.Books
+
+    <link href="~/Content/produktbook.css" rel="stylesheet" />
+<div class="col-md-3">
+    <div class="product-top">
+        @{ if (Model.imageurl != null && Model.imageurl != "")
+            {
+<img alt="@Model.name" src="data:image;base64,@Model.imageurl" />}
+else
+{ <img src="/Areas/Admin/Imazhadm/bookdefault.jpg" />} }
+
+
+        <div class="overlay">
+            <a href="/book/detaje/@Model.productid"><i class="fa fa-eye"></i></a>
+            <form action="/Shporta/Index/@Model.productid" method="post">
+
+
+                <input type="hidden" name="productid" value="@Model.productid" />
+
+                <button type="submit" value="Shporta" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> </button>
+            </form>
+        </div>
+
+
+
+    </div>
+    <div class="product-bottom text-center">
+        <h3>@Model.name</h3>
+        <h5>@Model.price.ToString("c")</h5>
+
+
+    </div>
+</div>
+
+   

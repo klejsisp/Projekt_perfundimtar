@@ -1,0 +1,25 @@
+﻿@model List<projekt.Models.Books>
+@{
+    ViewBag.Title = "Listmelibra";
+}
+
+@if (@ViewBag.kategoria != null)
+{
+    <h1 style="color: #d54d7b; font-family:" Great Vibes", cursive; font-size: 165px; line-height: 160px; font-weight: normal; margin-bottom: 0.5px; margin-top: 40px; text-align:center; text-shadow: 0 1px #fff;">Librat e Zhanrit :@ViewBag.kategoria</h1>
+}
+else
+{
+    <h1 style="color: #d54d7b; font-family:" Great Vibes", cursive; font-size: 165px; line-height: 160px; font-weight: normal; margin-bottom: 0.5px; margin-top: 40px; text-align:center; text-shadow: 0 1px #fff;">Te gjithe librat</h1>
+
+}
+<hr />
+
+@{
+
+    foreach (var item in Model)
+    {
+        @Html.Partial("_Bookinfo", item);
+    }
+}
+
+

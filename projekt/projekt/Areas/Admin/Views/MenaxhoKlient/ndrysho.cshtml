@@ -1,0 +1,49 @@
+﻿@model projekt.Models.AspNetUser
+
+    <h1 style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0">Ndrysho te dhenat e klientit!</h1>
+<hr />
+<form action="/Admin/MenaxhoKlient/ndrysho/@Model.Id" method="post" enctype="multipart/form-data">
+    <div style="margin-left:13px">
+        <div class="form-group col-md-6">
+            <label for="emri">Emri i perdoruesit</label>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="text" class="form-control" name="emri" id="emri" placeholder="Emri" value="@Model.emri" />
+        </div>
+        @Html.ValidationMessageFor(item => item.emri, "", new { @class = "text-danger" })
+
+        <div class="form-group col-md-6">
+            <label>Username :</label>
+            <input type="text" class="form-control" name="Username" id="Username" placeholder="Username" value="@Model.UserName" />
+            @Html.ValidationMessageFor(item => item.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Password :</label>
+            <input type="password" class="form-control" name="PasswordHash" id="password" placeholder="Password" />
+            @Html.ValidationMessageFor(item => item.PasswordHash, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label>Email :</label>
+            <input type="email" class="form-control" name="Email" id="email" placeholder="Email" value="@Model.Email" />
+            @Html.ValidationMessageFor(item => item.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-10">
+            <label for="gjinia">Gjinia</label><br />
+            @Html.Label("Male")
+            @Html.RadioButtonFor(m => m.gjinia, "Mashkull")
+            @Html.Label("Femer")
+            @Html.RadioButtonFor(m => m.gjinia, "Femer")
+            @Html.ValidationMessageFor(item => item.gjinia, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="imgurl">Foto</label>
+            <input type="file" class="form-control-file" id="imgurl" name="imgurl" />
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-success">Save</button> <span><b>OR</b></span>
+
+        <button class="btn btn-warning" onclick="window.location= '@Url.Action( "Index", "MenaxhoKlient",new { area="Admin"})'">Cancel</button>
+    </div>
+    @Html.Raw(TempData["ndryshomsg"])
+</form> 

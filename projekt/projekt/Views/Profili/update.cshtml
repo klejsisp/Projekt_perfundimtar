@@ -1,0 +1,47 @@
+﻿@model projekt.Models.AspNetUser
+@{
+    Layout = null;
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="~/Content/profili.css" rel="stylesheet" />"
+</head>
+<body>
+    <div class="profile-form">
+        <h1>Ndrysho te dhenat ! </h1>
+        <form action="/Profili/update" method="post" enctype="multipart/form-data">
+            <label>Emri :</label>
+            <input type="text" class="input-box" name="emri" id="emri" placeholder="Emri" value="@Model.emri" />
+            @Html.ValidationMessageFor(tmp => tmp.emri, "", new { style = "color:red" })
+            <label>Usernam :</label>
+            <input type="text" class="input-box" name="Username" id="Username" placeholder="Username" value="@Model.UserName" />
+            @Html.ValidationMessageFor(tmp => tmp.UserName, "", new { @style = "color:red" })
+            <label>Password :</label>
+            <input type="password" class="input-box" name="PasswordHash" id="password" placeholder="Password" />
+            @Html.ValidationMessageFor(tmp => tmp.PasswordHash, "", new { @style = "color:red" })
+            <label>Email :</label>
+            <input type="email" class="input-box" name="Email" id="email" placeholder="Email" value="@Model.Email" />
+            @Html.ValidationMessageFor(tmp => tmp.Email, "", new { @style = "color:red" })
+            <label for="gjinia">Gjinia</label><br />
+            @Html.Label("Male")
+            @Html.RadioButtonFor(m => m.gjinia, "Mashkull")
+            @Html.Label("Femer")
+            @Html.RadioButtonFor(m => m.gjinia, "Femer")
+            @Html.ValidationMessageFor(tmp => tmp.gjinia, "", new { @style = "color:red" })
+            <br />
+            <label for="imgurl">Foto</label>
+            <input type="file" class="form-control-file" id="imgurl" name="imgurl" />
+            <hr />
+            <button type="submit" class="savebutton">Save</button>
+            <p class="or">OR</p>
+            <button type="button" onclick="window.location= '@Url.Action( "Index", "Profili")'" class="deletebutton">Cancel</button>
+
+        </form>
+
+    </div>
+
+
+</body>

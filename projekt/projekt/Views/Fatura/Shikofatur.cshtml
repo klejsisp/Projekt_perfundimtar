@@ -1,0 +1,126 @@
+﻿@model List<projekt.Models.OrderDetail>
+@*<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+
+    
+    <div>@DateTime.Now</div>
+    <div>
+        Fatura
+    </div>
+
+    <table class="table">
+        <tr>
+            <th> Cmimi per produkt</th>
+            <th>Sasia per produkt</th>
+            <th>Emer produkti</th>
+        </tr>
+
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.cmimtotalxprodukt</td>
+                    <td>@item.sasiperprodukt</td>
+                    @foreach (var bk in ViewBag.Order)
+                    {
+                        if (bk.id == item.idorder)
+                        {
+                            <td>@bk.emerprodukti</td>
+                        }
+                    }
+                </tr>
+
+            }
+            var cmimi = Convert.ToString(Session["price"]);
+            var sasi = Convert.ToString(Session["sasitotale"]);
+            <tr>   <td colspan="4" class="text-right"><b>Cmimi total:  @cmimi</b></td></tr>
+            <tr>   <td colspan="4" class="text-right"><b>Sasia totale e produkteve: @sasi </b></td></tr>
+        }
+    </table>
+
+
+
+</body>
+
+
+</html>*@
+
+
+<h1 style="text-align:center">Fatura</h1>
+
+<div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
+    <div class="card">
+        <div class="card-header p-5">
+            
+            <div class="float-left">
+              <b>Data :</b>  
+                @DateTime.Now
+            </div>
+        </div><br /><br />
+        <div class="card-body">
+           
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Cmimi per produkt</th>
+                            <th>Sasia per produkt</th>
+                            <th>Emer produkti</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.cmimtotalxprodukt $</td>
+                                    <td>@item.sasiperprodukt</td>
+                                    @foreach (var bk in ViewBag.Order)
+                                    {
+                                        if (bk.id == item.idorder)
+                                        {
+                                            <td>@bk.emerprodukti</td>
+                                        }
+                                    }
+                                </tr>
+
+                            }
+                            }
+                        </tbody>
+                </table>
+            </div>
+            <br /><br />
+            <div class="row">
+                <div class="col-lg-4 col-sm-5 ml-auto">
+                    <table class="table table-clear">
+                        <tbody>@{
+                            var cmimi = Convert.ToString(Session["price"]);
+                            var sasi = Convert.ToString(Session["sasitotale"]);
+                            <tr>
+                                
+                                <td class="left">
+                                    <strong class="text-dark">Cmimi Total</strong>
+                                </td>
+                                <td class="right">@cmimi $</td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong class="text-dark">Sasia Totale</strong>
+                                </td>
+                                <td class="right">@sasi</td>
+                            </tr>
+                                    }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    </divclass="offset-xl-2>

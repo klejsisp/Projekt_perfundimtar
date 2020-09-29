@@ -1,0 +1,35 @@
+﻿
+<div>
+
+    <link href="~/Content/Success_Failer.css" rel="stylesheet" />
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <br />
+                <div class="error-template">
+                    <h1 class="label label-success" style="font-size: 35px;">
+                        Payment has been successfully done!
+                    </h1>
+
+                    <br />
+                    <br />
+                    <br />
+                    <div class="error-actions">
+                        <a href="@Url.Action("Shikofatur", "Fatura")" class="btn btn-default btn-lg">Fatura </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Raw(TempData["pagesa"])
+
+   

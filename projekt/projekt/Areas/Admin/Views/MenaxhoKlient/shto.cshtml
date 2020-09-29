@@ -1,0 +1,53 @@
+﻿@model projekt.ViewModels.RegjistrimViewModel
+
+
+<h1 style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0">Shto Perdorues</h1> <hr />
+    <form action="/Admin/MenaxhoKlient/shto" method="post" enctype="multipart/form-data">
+        <div style="margin-left:13px">
+        <div class="form-group col-md-6">
+            <label for="emri">Emri i perdoruesit</label>
+            <input type="text" class="form-control" id="emri" name="emri" placeholder="Emri" />
+            @Html.ValidationMessageFor(item => item.emri, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" />
+            @Html.ValidationMessageFor(item => item.username, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+            @Html.ValidationMessageFor(item => item.email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+            @Html.ValidationMessageFor(item => item.password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label for="repasuord">Confirm Password</label>
+            <input type="password" class="form-control" id="repasuord" name="repasuord" placeholder="Confirm Password" />
+            @Html.ValidationMessageFor(item => item.repasuord, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-10">
+            <label for="gjinia">Gjinia</label>
+            @Html.Label("Male")
+            @Html.RadioButtonFor(m => m.gjinia, "Mashkull")
+            @Html.Label("Femer")
+            @Html.RadioButtonFor(m => m.gjinia, "Femer")
+            @Html.ValidationMessageFor(item => item.gjinia, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="imgurl">Image</label>
+            <input type="file" class="form-control-file" id="imgurl" name="imgurl" />
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <button type="submit" class="btn btn-success">Shto Klient</button>
+            </div>
+    </form>
+

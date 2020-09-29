@@ -1,0 +1,71 @@
+﻿body {
+    font-family: Tahoma,Verdana, Geneva, sans-serif;
+    color: #fff;
+    background-image: url('../Images/login.jpg');
+    background-size:cover;
+}
+.signin{
+    background:rgba(44,62,80,0.7);
+    padding:40px;
+    width:350px;
+    margin:0 auto;
+    margin-top:80px;
+    height:auto;
+    margin-left:380px;
+
+}
+input[type=text],[type=password]{
+    width:300px;
+    text-align:center;
+    background:transparent;
+    border:none;
+    border-bottom: 1px solid #fff;
+    font-family:Play,sans-serif;
+    font-size:16px;
+    font-weight:200;
+    padding:10px 0;
+    transition:border 0.5s;
+    outline:none;
+    color:#fff;
+
+}
+
+form{
+    width:240px;
+    text-align:center;
+
+
+}
+button {
+    border: none;
+    width: 190px;
+    background: white;
+    color: #000;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 15px;
+    margin-left: 50px;
+    cursor:pointer;
+}
+button:hover{
+    color:#fff;
+    background-color:black;
+}
+h1{
+    color:white;
+    position:center;
+    margin-left:50px;
+}
+a{
+    color:yellow;
+    text-decoration:solid;
+}
+a:hover{
+    color:skyblue;
+
+}
+::-webkit-input-placeholder {
+    color: aliceblue;
+    filter: alpha(opacity=0.8);
+}

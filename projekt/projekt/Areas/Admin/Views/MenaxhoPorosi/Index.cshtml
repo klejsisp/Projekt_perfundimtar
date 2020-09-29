@@ -1,0 +1,143 @@
+﻿@model List<projekt.Models.Order>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="container" style="margin-top:3%">
+
+    <br />
+    <br />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=emerprodukti&icon=fa-sort-asc&pg=1">Emer Produkti</a>
+                        if (ViewBag.sort == "emerprodukti")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=emerprodukti&icon=fa-sort-desc&pg=1">Emer Produkti</a>
+                        if (ViewBag.sort == "emerprodukti")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+
+
+
+                </th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=sasia&icon=fa-sort-asc&pg=1">Sasia</a>
+                        if (ViewBag.sort == "sasia")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=sasia&icon=fa-sort-desc&pg=1">Sasia</a>
+                        if (ViewBag.sort == "sasia")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+                </th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=status&icon=fa-sort-asc&pg=1">Statusi</a>
+                        if (ViewBag.sort == "status")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoPorosi/index?sort=status&icon=fa-sort-desc&pg=1">Statusi</a>
+                        if (ViewBag.sort == "status")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+                </th>
+                <th>Emer Klienti</th>
+                <th>Ndrysho</th>
+                <th>Fshi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.emerprodukti</td>
+                    <td>@item.sasia</td>
+                    <td>@item.status</td>
+                    @foreach (var itm in @ViewBag.perdorues)
+                    {
+                        if (itm.Id == item.idperdorues)
+                        {
+                            <td>@itm.emri</td>
+                        }
+                    }
+                    <td><a href="/Admin/MenaxhoPorosi/ndrysho/@item.id" class='btn btn-warning'><span class='glyphicon glyphicon-edit'></span></a></td>
+                    <td><a href="/Admin/MenaxhoPorosi/fshi/@item.id" class='btn btn-danger'><span class='glyphicon glyphicon-trash' onclick="return confirm('Jeni te sigurt qe doni te fshini kete rekord ?')"></span></a></td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="10">
+                    @{
+                        int PrevPageNo = ViewBag.Pgnr - 1;
+                        if (PrevPageNo <= 0)
+                        {
+                            PrevPageNo = 1;
+                        }
+
+                        int NextPageNo = ViewBag.Pgnr + 1;
+                        if (NextPageNo > ViewBag.NoOfPages)
+                        {
+                            NextPageNo = ViewBag.NoOfPages;
+                        }
+                    }
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/MenaxhoPorosi/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@PrevPageNo">Prev</a>
+                        </li>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if ((i + 1) == ViewBag.Pgnr)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="/Admin/MenaxhoPorosi/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@(i + 1)">@( i + 1)</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Admin/MenaxhoPorosi/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg==@(i + 1)">@( i + 1)</a>
+                                </li>
+                            }
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/MenaxhoPorosi/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@NextPageNo">Next</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

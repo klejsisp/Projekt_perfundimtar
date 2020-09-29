@@ -1,0 +1,46 @@
+﻿@model projekt.ViewModels.gmail
+@{
+    Layout = null;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="~/Content/contact.css" rel="stylesheet" />
+
+<html>
+<body>
+    <div class="wrapper">
+        <h3>Contact Form</h3>
+        @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <p class="box">
+
+                @Html.TextBoxFor(model => model.To)
+                <label>To</label>
+            </p>
+
+            <p class="box">
+
+                @Html.TextBoxFor(model => model.Subject)
+                <label>Subject</label>
+            </p>
+            <p class="box">
+
+
+                @Html.TextAreaFor(model => model.Body)
+                <label>Body</label>
+
+            </p>
+           <input type="submit" class="buton" value="send" />
+            <hr />
+  <a href="/Admin/Faqjakryesore/Index">Kthehu tek faqja kryesore <span class="glyphicon glyphicon-hand-left"></span></a>
+
+
+
+        }
+        @Html.Raw(TempData["email"])
+    </div>
+</body>
+</html>

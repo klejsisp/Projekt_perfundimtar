@@ -1,0 +1,45 @@
+﻿.cart-page{
+    margin:20px auto;
+    padding-left:20px;
+    padding-right:20px;
+
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+   
+}
+th{
+    text-align:left;
+    padding:5px;
+    color:#fff;
+    background:#ff523b;
+    font-weight:normal;
+    font-size:16px;
+}
+td{
+    padding:10px 5px;
+}
+
+.total-price1{
+    border-top:3px solid #ff523b;
+}
+h1 {
+    color: #ff4411;
+    font-size: 37px;
+    font-family: 'Signika', sans-serif;
+    padding-bottom: 10px;
+    text-align:center;
+}
+#pagesa {
+   float: right;
+   font-size: 19px;
+    padding-right:30px;
+    color:red;
+
+}
+#blerja {
+    padding-left: 30px;
+    font-size: 19px;
+    color:red;
+}

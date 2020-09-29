@@ -1,0 +1,35 @@
+﻿@model projekt.Models.Order
+
+
+<h1 style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0">Ndrysho te dhenat e porosise!</h1>
+<hr />
+<form action="/Admin/MenaxhoPorosi/ndrysho/@Model.id" method="post">
+    @Html.AntiForgeryToken()
+    <div style="margin-left:13px">
+        <div class="form-group col-md-6">
+            <label>Emer Produkti :</label>
+            <input type="hidden" name="id" value="@Model.id" />
+            <input type="hidden" name="idperdorues" value="@Model.idperdorues" />
+            <input type="hidden" name="idproduct" value="@Model.idproduct" />
+            <input type="text" class="form-control" name="emerprodukti" readonly id="emerprodukti" placeholder="Emer Produkti" value="@Model.emerprodukti" />
+
+        </div>
+        <div class="form-group col-md-6">
+            <label>Sasia :</label>
+            <input type="text" class="form-control" name="sasia" id="sasia" placeholder="Sasia" value="@Model.sasia" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>Statusi:</label>
+            <select class="form-control" id="status" name="status">
+                <option value="">Please Select</option>
+                <option value="1">In Stock</option>
+                <option value="0">Out of Stock</option>
+            </select>
+         </div>
+            <hr />
+            <button type="submit" class="btn btn-success">Save</button>
+            <span><b>OR</b></span>
+            <button type="button" onclick="window.location= '@Url.Action( "Index", "MenaxhoPorosi",new { area="Admin"})'"  class="btn btn-warning">Cancel</button>
+            @Html.Raw(TempData["orderadmin"])
+    </div>
+</form> 

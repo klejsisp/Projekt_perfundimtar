@@ -1,0 +1,88 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../Areas/Admin/Imazhadm/contact.jpg');
+}
+
+.wrapper {
+    background: #fff;
+    border-radius: 30px;
+    margin: 80px auto;
+    max-width: 450px;
+    padding: 10px 30px;
+}
+
+    .wrapper h3 {
+        text-align: center;
+        font-family: lato;
+        font-size: 2rem;
+        color: deepskyblue;
+        margin: 30px 0;
+        text-transform: uppercase;
+    }
+
+.box {
+    position: relative;
+    margin-bottom: 30px;
+    font-family: lato;
+}
+
+    .box input,
+    .box textarea {
+        width: 100%;
+        padding: 12px;
+    }
+
+        .box input:focus + label,
+        .box input:valid + label,
+        .box textarea:focus + label,
+        .box textarea:valid + label {
+            color: deepskyblue;
+            font-size: 16px;
+            font-weight: bold;
+            top: -10px;
+        }
+
+            .box input:focus + label:after,
+            .box input:valid + label:after,
+            .box textarea:focus + label:after,
+            .box textarea:valid + label:after {
+                content: ':';
+            }
+
+    .box textarea {
+        height: 200px;
+    }
+
+.wrapper label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: #262626;
+    font-size: 12px;
+    background: #fff;
+    transition: all .5s ease-in-out;
+}
+
+.buton {
+    text-decoration: none;
+    background: deepskyblue;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 15px 70px;
+    font-family: lato;
+    font-size: 20px;
+    border-radius: 50px;
+    margin:auto;
+  
+}
+a {
+    background: transparent;
+    color: #262626;
+    
+}
+
+

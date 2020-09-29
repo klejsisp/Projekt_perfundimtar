@@ -1,0 +1,128 @@
+﻿@model List<projekt.Models.Books>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style=" height:455px;width:100%;margin-left:3px;" src="/Images/mainbook1.jpg" alt="First slide">
+            <div class="carousel-caption">
+                <h3>You can't buy HAPPINESS</h3>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style=" height:455px;width:100%;margin-left:3px;" src="/Images/mainbook2.jpg" alt="Second slide">
+            <div class="carousel-caption">
+                <h3>but you can buy BOOKS</h3>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style=" height:455px;width:100% ;margin-left:3px;" src="/Images/mainbook3.jpg" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>and that's kind of the same thing</h3>
+
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+
+
+</div>
+<link href="~/Content/produkt.css" rel="stylesheet" />
+<br />
+<br />
+<form style="float: right;  padding-right: 30px;" class="form-inline" action="/home/index">
+
+    <input type="search" class="form-control mr-1" id="search" name="search" placeholder="Search" value="@ViewBag.search">
+    <button type="submit" class="btn btn-primary">Search <i class="fa fa-search"></i></button>
+
+</form>
+<br />
+<div class="containerpr">
+    <h2>Librat e javes</h2>
+
+    <div class="row">
+
+        @if (ViewBag.search == "")
+        {
+            foreach (var item in Model)
+            {
+@Html.Partial("_Bookinfo", item);
+}
+}
+else
+{
+foreach (var itm in ViewBag.src)
+{
+<div class="col-md-3">
+    <div class="product-top">
+        @{ if (itm.imageurl != null && itm.imageurl != "")
+            {
+<img alt="@itm.name" src="data:image;base64,@itm.imageurl" />}
+else
+{ <img src="/Areas/Admin/Imazhadm/bookdefault.jpg" />} }
+
+
+        <div class="overlay">
+            <a href="/book/detaje/@itm.productid"><i class="fa fa-eye"></i></a>
+            <form action="/Shporta/Index/@itm.productid" method="post">
+
+
+                <input type="hidden" name="productid" value="@itm.productid" />
+
+                <button type="submit" value="Shporta" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> </button>
+            </form>
+        </div>
+
+
+
+    </div>
+    <div class="product-bottom text-center">
+        <h3>@itm.name</h3>
+        <h5>@itm.price.ToString("c")</h5>
+
+
+    </div>
+</div>}
+}
+    </div>
+</div>
+@Html.Raw(TempData["order"])
+<hr />
+<div class="row">
+    <div class="col-md-12 copyright">
+        <div class="col-md-6 col-sm-6 copyright-left">
+            <p><b>&copy; @DateTime.Now.Year -Online Booking. All right reserved.</b> </p>
+        </div>
+
+        <div class="copyright-right">
+            <ul class="list-unstyled list-social">
+                <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-square" style="color:blue;"></i></a></li>
+                <li><a href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter" style="color:cornflowerblue;"></i></a></li>
+                <li><a href="https://myaccount.google.com/profile" target="_blank"><i class="fa fa-google-plus" style="color:red"></i></a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="060a3340121d4651b4e9e7c0d075c9d3" Name="Diagram1">
+        <EntityTypeShape EntityType="projektModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="projektModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projektModel.Order" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="projektModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="projektModel.AspNetRole" Width="1.5" PointX="7.375" PointY="2" />
+        <EntityTypeShape EntityType="projektModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="1.125" />
+        <EntityTypeShape EntityType="projektModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="3.875" />
+        <EntityTypeShape EntityType="projektModel.AspNetUser" Width="1.5" PointX="9.25" PointY="0.625" />
+        <AssociationConnector Association="projektModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="projektModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="projektModel.FK_Order_AspNetUsers" />
+        <AssociationConnector Association="projektModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="projektModel.Books" Width="1.5" PointX="3" PointY="6.75" />
+        <AssociationConnector Association="projektModel.FK_Books_Category" />
+        <AssociationConnector Association="projektModel.FK_Order_Books" />
+        <EntityTypeShape EntityType="projektModel.OrderDetail" Width="1.5" PointX="7.5" PointY="6.875" />
+        <AssociationConnector Association="projektModel.FK_OrderDetail_Order" />
+        <EntityTypeShape EntityType="projektModel.Comment" Width="1.5" PointX="11.5" PointY="7.25" />
+        <AssociationConnector Association="projektModel.FK_Comments_AspNetUsers" />
+        <AssociationConnector Association="projektModel.FK_Comments_Books" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

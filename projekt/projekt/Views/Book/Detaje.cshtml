@@ -1,0 +1,207 @@
+﻿@model projekt.Models.Books
+@{
+    ViewBag.Title = "Detaje";
+}
+    <link href="~/Content/detajepr.css" rel="stylesheet" />   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript">
+    function rateout(rating) {
+        for (var i = 1; i <= rating; i++) {
+            $("#span" + i).attr('class', 'glyphicon glyphicon-star-empty');
+        }
+    }
+
+    function rateover(rating) {
+        for (var i = 1; i <= rating; i++) {
+            $("#span" + i).attr('class', 'glyphicon glyphicon-star');
+        }
+    }
+
+
+    function rateclick(rating) {
+        $("#lblRating").val(rating);
+
+        for (var i = 1; i <= rating; i++) {
+            $("#span" + i).attr('class', 'glyphicon glyphicon-star');
+        }
+        for (var i = rating + 1; i <= 5; i++) {
+            $("#span" + i).attr('class', 'glyphicon glyphicon-star-empty');
+        }
+    }
+
+    function createselected() {
+        var rating = $("#lblRating").val();
+        for (var i = 1; i <= rating; i++) {
+            $("#span" + i).attr('class', 'glyphicon glyphicon-star');
+        }
+    }
+
+    function VeryfyRating() {
+        var rating = $("#lblRating").val();
+        if (rating == 0) {
+            alert("Please Select Rating.");
+            return false;
+        }
+    }
+
+</script>
+
+
+
+
+<div class="single-product" style="margin-top:40px">
+   <div class="row">
+       <div class="col-4" style="margin-left:50px">
+           @{ if (@Model.imageurl != null && @Model.imageurl != "")
+               {
+                   <img alt="@Model.name" style="width:100%" src="data:image;base64,@Model.imageurl" />}
+               else
+               { <img src="/Areas/Admin/Imazhadm/bookdefault.jpg" style="width:100%" />}
+
+           }
+
+       </div>
+       <div class="col-2" style="margin-left:10px">
+           <h1 style="font-size:40px">@Model.name</h1>
+           <h3><i>Autori/rja : </i>@Model.autori</h3>
+           <h4 style="margin:20px 0;font-size:22px;font-weight:bold">$@Model.price</h4>
+           <input style="width:50px;height:40px;padding-left:10px;font-size:20px;margin-right:10px;border:1px solid #ff523b" type="number" value="@Model.sasidisponueshme" readonly />
+           <h3><a href="/Book/getfile/@Model.productid">Book Preview</a></h3>
+           <form action="/Shporta/Index/@Model.productid" method="post">
+
+
+               <input type="hidden" name="productid" value="@Model.productid" />
+
+               <button type="submit" value="Shporta" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> </button>
+           </form>
+           <h3>Description <i class="fa fa-indent"></i></h3><br />
+           <p>@Model.longdescription</p>
+
+       </div>
+   </div>
+ </div>
+   
+   
+
+<br />
+<div class="containerpr">
+
+    <h2>Libra te tjera te ketij autori</h2>
+    <div class="row">
+
+        @if (ViewBag.List.Count == 1)
+        {
+            <div class="alert alert-info">
+                <strong>Momentalisht nuk disponojme libra te tjera te ketij autori</strong>
+            </div>
+        }
+        else
+        {
+            foreach (var item in ViewBag.List)
+            {
+                if (item.productid != ViewBag.id)
+                {
+
+                      <div class="col-md-3">
+                         <div class="product-top">
+                              @{ if (item.imageurl != null && item.imageurl != "")
+                                  {
+                                 <img id="img" alt="@item.name" src="data:image;base64,@item.imageurl" />}
+                              else
+                              { <img id="img" src="/Areas/Admin/Imazhadm/bookdefault.jpg" />} }
+
+
+                    <div class="overlay">
+                          <a href="/book/detaje/@item.productid"><i class="fa fa-eye"></i></a>
+                       <form action="/Shporta/Index/@item.productid" method="post">
+
+
+                         <input type="hidden" name="productid" value="@item.productid" />
+
+                           <button type="submit" value="Shporta" class="btn btn-secondary"><i class="fa fa-shopping-cart"></i> </button>
+                      </form>
+                    </div>
+
+                          </div>
+                    <div class="product-bottom text-center">
+                    <h3>@item.name</h3>
+                      <h5>@item.price.ToString("c")</h5>
+
+
+                         </div>
+                  </div>
+                   
+                }
+            }
+
+
+        }
+    </div>
+</div>
+       
+
+
+        <hr />
+        <hr />
+<div style="margin-left:6px;margin-right:6px;">
+        @foreach (var item in ViewBag.koment)
+        {<table style="width:100%;border:1px solid black">
+
+
+                <tr><td>@item.commentdate.ToString("dd-MM-yyyy")</td></tr>
+                @{ string emerklienti = " ";
+                    foreach (var kl in ViewBag.klienti)
+                    {
+                        if (kl.Id == item.userid)
+                        {
+                            emerklienti = kl.emri;
+                        }
+
+                    }
+                }
+                <tr><td><span><b>Emri:</b></span>@emerklienti</td></tr>
+
+
+                <tr> <td><span><b>Komenti:</b></span>@item.commentdescription</td></tr>
+
+                <tr>
+                    <td>
+                        @for (int i = 0; i < item.rating; i++)
+                        {
+                            <span class="glyphicon glyphicon-star"></span>
+                        }
+                        @for (int i = item.rating; i < 5; i++)
+                        {
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        }
+
+                    </td>
+                </tr>
+            </table>
+
+        }
+        <h3>Please enter your Comment :</h3>
+        @using (Html.BeginForm("Detaje", "Book", FormMethod.Post, new { onsubmit = "return VeryfyRating()" }))
+        {
+            <textarea rows="5" cols="50" name="articleComment" id="txtArticleComment"></textarea>
+            <div onmouseout="createselected()">
+                <span id="span1" onmouseout="rateout(1)" onmouseover="rateover(1)" onclick="rateclick(1)" class="glyphicon glyphicon-star-empty"></span>
+                <span id="span2" onmouseout="rateout(2)" onmouseover="rateover(2)" onclick="rateclick(2)" class="glyphicon glyphicon-star-empty"></span>
+                <span id="span3" onmouseout="rateout(3)" onmouseover="rateover(3)" onclick="rateclick(3)" class="glyphicon glyphicon-star-empty"></span>
+                <span id="span4" onmouseout="rateout(4)" onmouseover="rateover(4)" onclick="rateclick(4)" class="glyphicon glyphicon-star-empty"></span>
+                <span id="span5" onmouseout="rateout(5)" onmouseover="rateover(5)" onclick="rateclick(5)" class="glyphicon glyphicon-star-empty"></span>
+            </div>
+            <div>
+                <input type="hidden" name="rating" id="lblRating" value="0" />
+            </div>
+
+            <div>
+                <input type="hidden" name="bookid" id="bookid" value="@ViewBag.id" />
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary active" name="Save Comment" value="Save Comment" />
+            </div>
+        }
+
+    </div>
+

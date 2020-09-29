@@ -1,0 +1,54 @@
+﻿@model projekt.ViewModels.RegjistrimViewModel
+    <link href="~/Content/regjistrimi.css" rel="stylesheet" />
+@{ 
+    Layout = null;
+}
+
+<div class="signup">
+    <form action="/Regjistrimi/Index" method="post" enctype="multipart/form-data">
+        <h1 style="color:#fff">Regjistrohu </h1>
+        <input type="text" id="emri" name="emri" placeholder="Emri" />
+        @Html.ValidationMessageFor(item => item.emri, "", new { @style="color:red" })
+
+
+
+        <input type="text" id="username" name="username" placeholder="Username" />
+        @Html.ValidationMessageFor(item => item.username, "", new { @style = "color:red" })
+
+
+
+        <input type="text" id="email" name="email" placeholder="Email" />
+        @Html.ValidationMessageFor(item => item.email, "", new { @style = "color:red" })
+
+
+
+
+        <input type="password" id="password" name="password" placeholder="Password" />
+        @Html.ValidationMessageFor(item => item.password, "", new { @style = "color:red" })
+
+
+        <input type="password" id="repasuord" name="repasuord" placeholder="Confirm-Password" />
+        @Html.ValidationMessageFor(item => item.repasuord, "", new { @style = "color:red" })
+
+        <br />
+
+        <div style=" margin-left: 50px;" class="form-group col-md-10">
+            @Html.Label("Male")
+            @Html.RadioButtonFor(m => m.gjinia, "Mashkull")
+            @Html.Label("Femer")
+            @Html.RadioButtonFor(m => m.gjinia, "Femer")
+            @Html.ValidationMessageFor(item => item.gjinia, "", new { @style = "color:red" })
+        </div>
+        <br />
+        <div style=" margin-left: 50px;">
+            Image:<br /><input type="file" class="form-control-file" id="imgurl" name="imgurl" />
+        </div>
+        <hr /><br />
+        @Html.ValidationSummary(true, "", new { @style = "color:red" })
+
+        <button type="submit">Regjistrohu</button>
+        <br /><br /><br />
+        Do you have an accout ? <a href="/Logimi/Index"> Logohu</a><br />
+        @Html.Raw(TempData["regjistrim"])
+    </form>
+</div>

@@ -1,0 +1,30 @@
+﻿@model projekt.ViewModels.LogimViewModel
+@{
+    Layout = null;
+}
+ 
+
+<link href="~/Content/logimi.css" rel="stylesheet" />
+<div class="signin">
+
+    <form action="/Logimi/Index" method="post">
+        <h1 style="color:white">Log In</h1>
+
+
+
+        <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" />
+        @Html.ValidationMessageFor(tmp => tmp.Username, "", new { @style = "color:red" })
+
+
+
+
+        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
+        @Html.ValidationMessageFor(tmp => tmp.Password, "", new { @style = "color:red" })
+        <br /><br />
+        <button type="submit">Logohu</button><br /><br />
+        <br /><br /><br />
+        Don't have account ?<a href="/Regjistrimi/Index"> Regjistrohu</a><br />
+
+        <label style="color:red">@ViewBag.Mesazh</label> <br /><br />
+    </form>
+</div>

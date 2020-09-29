@@ -1,0 +1,64 @@
+﻿
+@model List<projekt.Models.Order>
+<link href="~/Content/shporta.css" rel="stylesheet" />
+
+<h1>SHPORTA</h1>
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Emri</th>
+            <th>Sasia</th>
+            <th>Cmimi</th>
+            <th>CmimiXSasi</th>
+            <th>Shto</th>
+            <th>Hiq</th>
+            <th>Fshi</th>
+        </tr>
+
+        @{decimal total = 0;
+            int sasitotal = 0;
+            List<projekt.Models.OrderDetail> ordt = new List<projekt.Models.OrderDetail>();
+            foreach (var item in Model)
+            {
+
+                sasitotal = sasitotal + Convert.ToInt32(item.sasia);
+                decimal lineTotal = Convert.ToDecimal(item.sasia * item.Book1.price);   //cmimi per produktxsasi
+                total = Convert.ToDecimal(@total + lineTotal);
+                ordt = new List<projekt.Models.OrderDetail>() { new projekt.Models.OrderDetail() { idorder = item.id, sasiperprodukt = item.sasia, cmimtotalxprodukt = lineTotal, idorderdetail = item.idproduct } }; //ne idorderdetail kemi ruajtur id-ne e produktit liber qe do na duhet me vone per ndryshuar sasine e disponueshme te tij
+
+                <tr>
+
+
+                    <td>@item.emerprodukti</td>
+
+                    <td>@item.sasia</td>
+
+                    <td>@item.Book1.price</td>
+
+                    <td>@lineTotal</td>
+
+                    <td><a href="/Shporta/Shto/@item.idproduct"><span class="glyphicon glyphicon-plus"></span></a></td>
+
+                    <td><a href="/Shporta/Hiq/@item.idproduct"><span class="glyphicon glyphicon-minus"></span></a></td>
+
+                    <td><a href="/Shporta/Fshi/@item.idproduct"><span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+
+
+            }
+
+            <tr class="total-price1">   <td colspan="3" class="text-left"><b>Cmimi total: @total</b></td></tr>
+            <tr class="total-price">   <td colspan="3" class="text-left"><b>Sasia totale e produkteve: @sasitotal</b></td></tr>
+
+            Session["price"] = total;   //cmimi total i librave
+            Session["sasitotale"] = sasitotal;   //sasia totale
+            Session["order"] = ordt;
+
+        }
+    </table>
+    <br />
+</div>
+<a id="blerja" href="/Book/Listmelibra">Vazhdo blerjen <i class='fa fa-cart-plus' style='font-size:19px;color:red'></i></a>
+<a id="pagesa" href="/Pagesa/PaymentWithPayPal?">Kryej pagesen <i class="fa fa-paypal" style="font-size:19px;color:red"></i></a>
+
+@Html.Raw(TempData["orderi"])

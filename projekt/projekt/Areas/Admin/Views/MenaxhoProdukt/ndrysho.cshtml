@@ -1,0 +1,71 @@
+﻿@model projekt.Models.Books
+
+<h1 style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0">Ndrysho te dhenat e librit!</h1>
+<hr />
+
+<form action="/Admin/MenaxhoProdukt/ndrysho" method="post" enctype="multipart/form-data">
+    <div style="margin-left:13px">
+        <div class="form-group col-md-6">
+            <label for="name">Emri i librit</label>
+            <input type="hidden" id="productid" name="productid" value="@Model.productid" />
+            <input type="text" class="form-control" id="name" name="name" placeholder="Emri" value="@Model.name" />
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="autori">Autori</label>
+            <input type="text" class="form-control" id="autori" name="autori" placeholder="Autori" value="@Model.autori" />
+
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Cmimi" value="@Model.price" />
+
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="sasidisponueshme">Sasi e disponueshme</label>
+            <input type="number" class="form-control" id="sasidisponueshme" name="sasidisponueshme" value="@Model.sasidisponueshme" />
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="longdescription">Pershkrimi</label>
+            <textarea class="form-control" id="longdescription" name="longdescription" value="@Model.longdescription"></textarea>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="isbookoftheweek">Libri i javes</label>
+            <select class="form-control" id="isbookoftheweek" name="isbookoftheweek">
+                <option value="">Please Select</option>
+                <option value="1">Libri i javes</option>
+                <option value="0">Jo liber i javes</option>
+            </select>
+        </div>
+
+
+        <div class="form-group col-md-6">
+            <label for="categoryid">Kategori</label>
+            <select class="form-control" id="categoryid" name="categoryid">
+                <option value="">Please Select</option>
+                @foreach (var item in @ViewBag.kategori)
+                {
+                    <option value="categoryid">@item.categoryname</option>
+                }
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="imageurl">Imazhi</label>
+            <input type="file" class="form-control-file" id="imageurl" name="imageurl" />
+        </div>
+
+        <hr />
+
+
+
+        <button type="submit" class="btn btn-success">Save</button>
+        </div>
+</form>
+
+

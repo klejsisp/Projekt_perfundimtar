@@ -1,0 +1,43 @@
+﻿@{
+    Layout =null;
+}
+@model projekt.Models.AspNetUser
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="~/Content/profili.css" rel="stylesheet" />"
+    </head>
+<body>
+    <div class="profile-form">
+        @{ if (Model.imgurl != null && Model.imgurl !="")
+            {
+                <img src="data:image;base64,@Model.imgurl" />}
+            else
+            { <img src="/Images/defaultuserimg.jpg" />}
+
+            }
+
+        <h1>Profili im </h1>
+        <form>
+            <label>Emri :</label>
+            <input type="text" class="input-box" id="emri" value="@Model.emri" />
+            <label>Usernam :</label>
+            <input type="text" class="input-box" id="Username" value="@Model.UserName" />
+            <label>Email :</label>
+            <input type="email" class="input-box" id="email" value="@Model.Email" />
+            <label>Gjinia :</label>
+            <input type="text" class="input-box" id="gjinia" value="@Model.gjinia" />
+            <hr />
+            <button type="button" onclick="window.location= '@Url.Action( "update", "Profili")'" class="updatebutton">Update</button>
+            <p class="or">OR</p>
+            <button type="button" onclick="window.location= '@Url.Action( "delete", "Profili")'" class="deletebutton">Delete</button>
+
+            <p class="text-danger">Kujdes ky eshte veprim i pakthyeshem !</p>
+            <a href="/Home/Index">Kthehu tek faqja kryesore <span class="glyphicon glyphicon-hand-left"></span></a>
+        </form>
+
+    </div>
+
+
+</body>

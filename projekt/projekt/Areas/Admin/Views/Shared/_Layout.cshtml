@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/adminmainpage.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+  
+      <nav>
+          <input type="checkbox" id="check" />
+          <label for="check" class="checkbtn">
+              <i class="fas fa-bars"></i>
+          </label>
+          <label class="logo"><i class='fas fa-book-open' style="color:white"></i> E-Book</label>
+          <ul>
+              <li><a class="active" href="/Admin/Faqjakryesore/Index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="/Admin/Contact/Index"><i class="fas fa-envelope-open-text"></i> Kontakti</a></li>
+              <li><a href="/Admin/MenaxhoKlient/Index"><i class="fas fa-user-edit"></i> Perdorues</a></li>
+              <li><a href="/Admin/MenaxhoPorosi/Index"><i class="fas fa-cart-arrow-down"></i> Porosi</a></li>
+              <li><a href="/Admin/MenaxhoProdukt/Index"><i class="fas fa-book"> </i> Produkte</a></li>
+              <li><a href="/Logout/Index"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+          </ul>
+      </nav>
+        
+    
+
+
+
+    <div>
+        @RenderBody()
+
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

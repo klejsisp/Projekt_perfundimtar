@@ -1,0 +1,193 @@
+﻿@model List<projekt.Models.Books>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="container" style="margin-top:3%">
+    <a href="/Admin/MenaxhoProdukt/shto" class="btn btn-info"><i class="fas fa-plus"></i> Shto nje liber</a>
+    <br />
+    <br />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=name&icon=fa-sort-asc&pg=1">Emer Libri</a>
+                        if (ViewBag.sort == "name")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=name&icon=fa-sort-desc&pg=1">Emer Libri</a>
+                        if (ViewBag.sort == "name")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+
+
+
+                </th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=autori&icon=fa-sort-asc&pg=1">Autori</a>
+                        if (ViewBag.sort == "autori")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=autori&icon=fa-sort-desc&pg=1">Autori</a>
+                        if (ViewBag.sort == "autori")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+                </th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=price&icon=fa-sort-asc&pg=1">Cmimi</a>
+                        if (ViewBag.sort == "price")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=price&icon=fa-sort-desc&pg=1">Cmimi</a>
+                        if (ViewBag.sort == "price")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+                </th>
+                <th>
+                    @if (ViewBag.icon == "fa-sort-desc")
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=sasidisponueshme&icon=fa-sort-asc&pg=1">Sasi ne stock</a>
+                        if (ViewBag.sort == "sasidisponueshme")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Admin/MenaxhoProdukt/index?sort=sasidisponueshme&icon=fa-sort-desc&pg=1">Sasi ne stock</a>
+                        if (ViewBag.sort == "sasidisponueshme")
+                        {
+                            <i class="fa @ViewBag.icon"></i>
+                        }
+                    }
+
+                </th>
+                <th>Avg Rating</th>
+                <th>Numri i votave</th>
+                <th>Ndrysho</th>
+                <th>Fshi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @{ if (item.imageurl != null && item.imageurl != "")
+                        {
+                            <td><img src="data:image;base64,@item.imageurl" style="width:65px" /></td>
+                        }
+
+                        else
+                        {
+                            <td><img src="/Areas/Admin/Imazhadm/bookdefault.jpg" style="width:65px" /></td>
+                        }
+
+
+                    }
+                    <td>@item.name</td>
+                    <td>@item.autori</td>
+                    <td>@item.price</td>
+                    <td>@item.sasidisponueshme</td>
+                    @{
+                        var nr = 0;
+                        var rating = 0.0;
+
+                        foreach (var cm in ViewBag.Comment)
+                        {
+                            if (cm.bookid == item.productid)
+                            {
+                                rating = rating + cm.rating;
+                                nr = nr + 1;
+
+
+                            }
+                        }
+                        var rezultati = rating / nr;
+                        if (nr == 0) { rezultati = 0; }
+                        <td>@rezultati</td>
+                        <td>@nr</td>
+
+                    }
+
+
+
+
+                    <td><a href="/Admin/MenaxhoProdukt/ndrysho/@item.productid" class='btn btn-warning'><span class='glyphicon glyphicon-edit'></span></a></td>
+                    <td><a href="/Admin/MenaxhoProdukt/fshi/@item.productid" class='btn btn-danger'><span class='glyphicon glyphicon-trash' onclick="return confirm('Jeni te sigurt qe doni te fshini kete rekord ?')"></span></a></td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="10">
+                    @{
+                        int PrevPageNo = ViewBag.Pgnr - 1;
+                        if (PrevPageNo <= 0)
+                        {
+                            PrevPageNo = 1;
+                        }
+
+                        int NextPageNo = ViewBag.Pgnr + 1;
+                        if (NextPageNo > ViewBag.NoOfPages)
+                        {
+                            NextPageNo = ViewBag.NoOfPages;
+                        }
+                    }
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/MenaxhoProdukt/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@PrevPageNo">Prev</a>
+                        </li>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if ((i + 1) == ViewBag.Pgnr)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="/Admin/MenaxhoProdukt/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@(i + 1)">@( i + 1)</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Admin/MenaxhoProdukt/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg==@(i + 1)">@( i + 1)</a>
+                                </li>
+                            }
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/MenaxhoProdukt/index?sort=@ViewBag.sort&icon=@ViewBag.icon&pg=@NextPageNo">Next</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
